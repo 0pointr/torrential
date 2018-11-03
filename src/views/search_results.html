@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Torrential - Search</title>
+	<link rel="stylesheet" href="../bootstrap-4.0.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../css/index.css"/>
+	<style>
+		.result-container {
+			padding-bottom: 10px;
+			margin-top: 10px;
+			border-bottom: 1px dotted;
+		}
+		.title {
+			font-weight: bold;
+			font-size: 20px;
+			margin-right: 5px;
+		}
+		.title-container {
+			margin-bottom: 10px;
+		}
+		.links {
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<p class="h5">You searched for <strong><%= query %></strong></p>
+		<p><%= results.length %> results were found.</p>
+		<% results.forEach(function(result) { %>
+			<div class="result-container">
+				<div class="row">
+					<div class="col-md-10 title-container">
+						<span class="title"><%=result.title%></span>
+						<span class="badge badge-secondary"><%= result.provider %></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">Size: <%=result.size%></div>
+					<div class="col-md-3">Seeds: <%=result.seeds%> &nbsp; Peers: <%=result.peers%></div>
+				</div>
+				<div class="row links">
+					<div class="col-md-3">
+						<% if (result.magnet) { %>
+							<a class="btn btn-primary" href="download?magnetUrl=<%= result.magnet %>">Download</a>
+						<% } else { %>
+							Download not available
+						<% } %>
+					</div>
+					<div class="col-md-3">
+						<% if (result.magnet) { %>
+							<a href="<%=result.magnet%>">Magnet Link</a>
+						<% } else { %>
+							Magnet link not available
+						<% } %>
+					</div>
+					<div class="col-md-3">
+						<% if (result.link) { %>
+							<a href="<%=result.link%>">Torrent Link</a>
+						<% } else { %>
+							Torrent link not available
+						<% } %>
+					</div>
+					<% if (result.desc) { %>
+						<div class="col-md-3">
+							<a href="<%=result.desc%>">Page Link</a>
+						</div>
+					<% } %>
+				</div>
+			</div>
+		<% }); %> 
+	</div>
+	<div class="stats">
+		<p>random stat</p>
+	</div>
+
+	<br>
+	<br>
+	<br>
+<body>
+</html>

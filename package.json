@@ -1,0 +1,18 @@
+{
+  "name": "server0",
+  "version": "1.0.0",
+  "description": "a simple server practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "0pointr",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "lodash": "^4.17.11",
+    "node-json-db": "^0.9.1",
+    "torrent-search-api": "^2.0.3",
+    "transmission": "^0.4.9"
+  }
+}

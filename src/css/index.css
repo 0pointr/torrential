@@ -1,0 +1,20 @@
+.stats {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	border-left: 1px dotted;
+	min-width: 200px;
+}
+
+.search-box {
+	width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    min-height: 120px;
+    align-items: center;
+}
+
+.form-inline > * {
+   margin:5px 3px;
+}
