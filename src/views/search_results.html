@@ -26,6 +26,7 @@
 </head>
 <body>
 	<div class="container">
+        <%- include('_search_box', {}) %>
 		<p class="h5">You searched for <strong><%= query %></strong></p>
 		<p><%= results.length %> results were found.</p>
 		<% results.forEach(function(result) { %>

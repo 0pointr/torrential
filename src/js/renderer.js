@@ -20,19 +20,20 @@ function renderOld(viewFile, ctx = {}) {
 function render(viewFile, data = {}) {
     let viewPath = viewDir + viewFile + '.html';
     let compiledFunc;
-    if (compiled.has(viewPath)) {
-        compiledFunc = compiled.get(viewPath);
-        return compiledFunc(data);
-    }
-    else {
-        fs.readFile(viewPath, 'utf8', function(err, fileData) {
-            if (!err) {
-                compiledFunc = ejs.compile(fileData, {filename: viewPath});
-                compiled.set(viewPath, compiledFunc);
-                return compiledFunc(data);
-            }
-            else console.log(err);
-        });
-    }
-    
+    return new Promise(function(resolve, reject) {
+        if (compiled.has(viewPath)) {
+            compiledFunc = compiled.get(viewPath);
+            resolve( compiledFunc(data) );
+        }
+        else {
+            fs.readFile(viewPath, 'utf8', function(err, fileData) {
+                if (!err) {
+                    compiledFunc = ejs.compile(fileData, {filename: viewPath});
+                    compiled.set(viewPath, compiledFunc);
+                    resolve( compiledFunc(data) );
+                }
+                else reject( console.log(err) );
+            });
+        }
+    });
 }
